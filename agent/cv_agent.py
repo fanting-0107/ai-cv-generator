@@ -60,7 +60,7 @@ def generate_resume_markdown(resume_data: dict, jd_text: str) -> str:
     prompt = build_resume_prompt(resume_data, jd_text)
 
     response = client.chat.completions.create(
-        model="deepseek-chat",
+        model="deepseek-v4-flash",
         messages=[
             {"role": "user", "content": prompt}
         ],
