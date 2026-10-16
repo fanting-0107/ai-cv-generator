@@ -15,39 +15,31 @@ AI Agent，根据用户输入信息自动生成个人简历。
 
 ## 开发计划
 - [x] 初始化git仓库，增加.gitignore
-- [ ] 搭建项目文件结构
-- [ ] 交互式分步采集简历信息，可选录入目标岗位JD
-- [ ] 实时预览：每录入一段信息，控制台展示当前简历草稿
-- [ ] Agent模块：结合【个人信息+岗位JD】润色简历，标准化Markdown排版
-- [ ] 用户确认机制：生成完整简历后，等待用户确认，确认通过才写入文件
-- [ ] 输出Markdown简历至 output_cv/ 文件夹
-- [ ] 测试，调试优化
+- [x] 搭建项目文件结构
+- [x] 交互式分步采集简历信息，可选录入目标岗位JD
+- [x] 实时预览：每录入一段信息，控制台展示当前简历草稿
+- [x] Agent模块：结合【个人信息+岗位JD】润色简历，标准化Markdown排版
+- [x] 用户确认机制：生成完整简历后，等待用户确认，确认通过才写入文件
+- [x] 输出Markdown简历至 output_cv/ 文件夹
+- [x] MVP测试，调试优化
 
-### 环境准备
-本项目使用 Anaconda 管理Python虚拟环境
-1. 创建虚拟环境
-2. 激活环境
-3. 在环境内安装依赖：
-`pip install python-dotenv openai`
-4. VS Code 选择解释器
-
-### 导出环境（可选）
-`conda env export > environment.yml`
+### 导出环境
+`conda env export --from-history > environment.yml`
 
 ### 环境准备
 本项目使用 Anaconda 管理Python虚拟环境
 1. 创建虚拟环境：
-`conda create -n ai-cv-gen python=3.10`
+`conda create -n 虚拟环境名 python=3.10`
 2. 激活环境：
-`conda activate ai-cv-gen`
+`conda activate 虚拟环境名`
 3. 在环境内安装依赖：
 `pip install python-dotenv openai`
+4. VS Code 选择解释器：AutoResume_env Python3.10.22
 
-4. VS Code 选择解释器：ai-cv-gen Python3.10
-
-### 导出环境（可选）
-`conda env export > environment.yml`
-
-### 重建环境（可选）
-`conda env create -f environment.yml`
-
+## 环境搭建
+### Conda（推荐）
+```bash
+# 创建conda虚拟环境
+conda env create -f environment.yml
+# 激活环境
+conda activate AutoResume_env
