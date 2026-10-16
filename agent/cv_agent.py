@@ -3,6 +3,7 @@ agent/cv_agent.py
 简历Agent核心模块
 接收用户个人信息 + 岗位JD，调用大模型，生成排版规范的Markdown简历
 """
+from openai import APIError, APIConnectionError, AuthenticationError
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -59,12 +60,16 @@ def generate_resume_markdown(resume_data: dict, jd_text: str) -> str:
     )
     prompt = build_resume_prompt(resume_data, jd_text)
 
-    response = client.chat.completions.create(
-        model="deepseek-v4-flash",
-        messages=[
-            {"role": "user", "content": prompt}
-        ],
-        temperature=0.3
-    )
+    try:
+        response = client.chat.completions.create(
+            model="deepseek-v4-flash",
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.3
+        )
+    except (AuthenticationError, APIConnectionError, APIError) as err:
+        # 捕获OpenAI系列SDK异常，向上抛出，main.py做捕获处理
+        raise err
     md_result = response.choices[0].message.content.strip()
     return md_result
