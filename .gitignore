@@ -1,0 +1,21 @@
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# 虚拟环境文件夹
+venv/
+env/
+
+# API密钥！重要，防止把大模型密钥上传仓库
+.env
+
+# 生成的简历文件
+output_cv/
+*.pdf
+*.docx
+
+# VS Code本地配置（个人编辑器设置，不用提交到仓库）
+.vscode/
