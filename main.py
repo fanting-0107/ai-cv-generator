@@ -3,6 +3,7 @@ main.py
 程序入口，交互式信息采集主流程
 功能：JD录入、分步采集简历信息、每一步实时预览、调用Agent生成简历、确认保存
 """
+from openai import APIError, APIConnectionError, AuthenticationError
 from utils.preview import render_resume_preview, show_final_markdown_preview
 from utils.file_io import save_resume_markdown
 from agent.cv_agent import generate_resume_markdown
@@ -48,8 +49,10 @@ def main():
 
     print("\n==== 全部信息采集完成，正在调用AI生成简历 ====")
     try:
+        print("[DEBUG] 即将进入generate_resume_markdown，准备发起LLM网络请求")
         final_md = generate_resume_markdown(resume_data, jd_content)
-    except Exception as e:
+        print("[DEBUG] LLM请求执行完成，拿到返回结果")
+    except (AuthenticationError, APIConnectionError, APIError, Exception) as e:
         print(f"❌ AI调用失败：{e}")
         return
 
